@@ -27,6 +27,7 @@ PORTS.md                         host port registry
 scripts/new-project.ps1          scaffold a new program
 scripts/new-project.sh           same scaffold for bash
 scripts/templates/               starters used by the scaffold
+dashboard/                       local sandbox control panel (port 8787)
 js/javascript/javascript-sandbox/      Node, JavaScript only
 js/typescript/typescript-sandbox/      Node + the TypeScript compiler
 js/typescript/typescript-repl/         interactive REPL (readline + vm)
@@ -474,5 +475,15 @@ Groups: `js`, `php`, `rust`, `cpp`, `java`, `python`, `css`, `asm`. (There is no
 For technologies where the group template is not the right starting point, copy the `-sandbox` program instead — for example, copy `js/react/react-sandbox` to add another React program. Every technology directory has a `README.md` with the exact steps.
 
 Work inside the new directory. If it listens on a port, change the template default and add a row to `PORTS.md`. The CSS template defaults to port 5199. The PHP template defaults to port 8090.
+
+## Dashboard
+
+`dashboard/` is a local control panel for this repo. From `dashboard/`:
+
+```powershell
+node server.mjs
+```
+
+Open `http://127.0.0.1:8787`. It lists every sandbox and starts/stops them with one click — server/docker sandboxes get Start/Stop, one-shot CLIs get Run, interactive REPLs show the terminal command, and static files show the path. Start auto-runs `pnpm install` and any build step as needed. See `dashboard/README.md`.
 
 This repository is licensed under the GNU General Public License v3. See `LICENSE`.

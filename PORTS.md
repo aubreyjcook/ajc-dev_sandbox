@@ -31,5 +31,6 @@ Laravel and WordPress keep their databases on a private compose network. `db/pos
 | `asm/x86-nasm/x86-nasm-sandbox` | CLI in Docker | none |
 | `asm/arm64/arm64-sandbox` | CLI in Docker | none |
 | `asm/wasm-wat/wasm-wat-sandbox` | CLI in Docker | none |
+| `dashboard` | Dashboard | 8787 |
 
 The scaffold template for a new CSS program defaults to port 5199, and the PHP template defaults to port 8090, so a new program does not take a port already listed above. Change that default before you rely on it, and record the final port in this file.
