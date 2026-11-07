@@ -1,6 +1,9 @@
+import { createRequire } from 'node:module';
 import * as readline from 'readline';
 import * as util from 'util';
 import * as vm from 'vm';
+
+const require = createRequire(import.meta.url);
 
 const PROMPT = '> ';
 const CONTINUE_PROMPT = '... ';

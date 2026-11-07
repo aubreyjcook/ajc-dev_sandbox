@@ -4,7 +4,8 @@ Node plus the TypeScript compiler. No framework.
 
 ## Programs
 
-- [`typescript-sandbox/`](typescript-sandbox/) — `pnpm build` compiles `src/` to `dist/`, `pnpm start` runs `dist/index.js`.
+- [`typescript-sandbox/`](typescript-sandbox/) — the reference starter: `pnpm build` compiles `src/` to `dist/`, `pnpm start` runs `dist/index.js`.
+- [`typescript-repl/`](typescript-repl/) — an interactive REPL (`readline` + `vm`).
 
 ## Add a program
 

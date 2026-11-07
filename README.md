@@ -29,6 +29,7 @@ scripts/new-project.sh           same scaffold for bash
 scripts/templates/               starters used by the scaffold
 js/javascript/javascript-sandbox/      Node, JavaScript only
 js/typescript/typescript-sandbox/      Node + the TypeScript compiler
+js/typescript/typescript-repl/         interactive REPL (readline + vm)
 js/next/next-sandbox/                  Next.js, port 3000
 js/react/react-sandbox/                Vite + React, port 5173
 js/angular/angular-sandbox/            Angular, Node 22, port 4200
@@ -104,6 +105,16 @@ pnpm start
 ```
 
 `pnpm build` writes JavaScript to `dist`. `pnpm start` runs `dist/index.js`.
+
+### js/typescript/typescript-repl
+
+An interactive REPL built on Node's `readline` and `vm`. It evaluates JavaScript (not TypeScript) and keeps a persistent context; `require` is available inside it. See the [REPL README](js/typescript/typescript-repl/README.md).
+
+```powershell
+pnpm install
+pnpm build
+pnpm start
+```
 
 ### js/next/next-sandbox
 
