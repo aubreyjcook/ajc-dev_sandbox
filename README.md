@@ -32,6 +32,7 @@ js/typescript/typescript-sandbox/      Node + the TypeScript compiler
 js/typescript/typescript-repl/         interactive REPL (readline + vm)
 js/next/next-sandbox/                  Next.js, port 3000
 js/react/react-sandbox/                Vite + React, port 5173
+js/react/react-component-sandbox/      standalone components, port 5176
 js/angular/angular-sandbox/            Angular, Node 22, port 4200
 js/vue/vue-sandbox/                    Vite + Vue, port 5174
 js/nest/nest-sandbox/                  Nest, port 3001
@@ -151,6 +152,23 @@ pnpm preview
 ```
 
 `pnpm build` writes static files to `dist`. `pnpm preview` serves that folder on port 5173.
+
+### js/react/react-component-sandbox
+
+A playground for standalone React components on port 5176. Drop a component in `src/components/` and add a section to `src/App.tsx`; the dev server renders each one in isolation. Node 24.
+
+```powershell
+pnpm dev
+```
+
+Open `http://localhost:5176`.
+
+```powershell
+pnpm build
+pnpm preview
+```
+
+`pnpm build` writes static files to `dist`. `pnpm preview` serves that folder on port 5176.
 
 ### js/angular/angular-sandbox
 

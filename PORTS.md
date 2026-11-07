@@ -17,6 +17,7 @@ Laravel and WordPress keep their databases on a private compose network. `db/pos
 | `db/sqlite/sqlite-sandbox` | SQLite file | none |
 | `js/angular/angular-sandbox` | Angular | 4200 |
 | `js/react/react-sandbox` | Vite | 5173 |
+| `js/react/react-component-sandbox` | Vite | 5176 |
 | `js/vue/vue-sandbox` | Vite | 5174 |
 | `css/tailwind/tailwind-sandbox` | Vite | 5175 |
 | `php/laravel/laravel-sandbox` | PHP | 8000 |

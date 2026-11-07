@@ -33,7 +33,7 @@ Next.js, port 3000.
 
 ## react
 
-Vite + React, port 5173.
+Vite + React. `react-sandbox` on port 5173; `react-component-sandbox` on port 5176.
 
 | Task | Command |
 | --- | --- |

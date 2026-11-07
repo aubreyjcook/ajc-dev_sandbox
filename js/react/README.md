@@ -5,6 +5,7 @@ Vite + React on Node 24.
 ## Programs
 
 - [`react-sandbox/`](react-sandbox/) — the reference app, port 5173.
+- [`react-component-sandbox/`](react-component-sandbox/) — a playground for standalone components, port 5176.
 
 ## Add a program
 
