@@ -1,8 +1,11 @@
-# x86-nasm
+# x86-64 (NASM)
 
-Target: Linux x86-64.
-Assembler: NASM, Intel syntax.
-Calling convention: System V. The program uses the `write` and `exit` syscalls.
-Run: `docker compose run --rm app make`
+Linux x86-64, NASM with Intel syntax, run in Docker.
 
-NASM, binutils, and the binary stay in the `sandbox-asm-x86` compose project (network `sandbox-asm-x86-net`). The binary is a Linux ELF file, so it does not run on the Windows host.
+## Programs
+
+- [`x86-nasm-sandbox/`](x86-nasm-sandbox/) — `make` assembles and runs a hello program.
+
+## Add a program
+
+Copy `x86-nasm-sandbox/` to a new sibling folder. Give it a unique compose project name and network, and adapt the `Makefile`/`Dockerfile` if your target differs.

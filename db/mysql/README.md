@@ -1,13 +1,11 @@
-# mysql
+# MySQL
 
-MySQL 8.4 in compose project `sandbox-mysql`, network `sandbox-mysql-net`, host port 3306. This is not the database inside `php/laravel-app`. That one stays on `sandbox-laravel-net` and is not published to the host.
+MySQL 8.4 in Docker.
 
-```powershell
-docker compose up
-```
+## Programs
 
-```text
-mysql://sandbox:sandbox@localhost:3306/sandbox
-```
+- [`mysql-sandbox/`](mysql-sandbox/) — host port 3306, `mysql://sandbox:sandbox@localhost:3306/sandbox`.
 
-`init/01-schema.sql` loads the `notes` table the first time the volume is created. Later starts keep the existing volume.
+## Add a program
+
+Copy `mysql-sandbox/` to a new sibling folder. Give it a unique compose project name and network, a free host port, and a distinct volume. Seed your schema in `init/`. Add the port to `PORTS.md`.

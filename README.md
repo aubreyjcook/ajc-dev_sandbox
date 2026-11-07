@@ -1,49 +1,65 @@
-# aubreyjcook-dev_sandbox
+# ajc-dev_sandbox
 
-Each experiment in this repo is its own sandbox. Toolchains, dependencies, ports, and containers stay inside that project so one stack does not change another.
+Each experiment in this repo is its own sandbox. Toolchains, dependencies, ports, and containers stay inside that program so one stack does not change another.
 
-Run every command below from the project directory, not the repo root. Host ports are registered in `PORTS.md`.
+Run every command below from the program directory, not the repo root. Host ports are registered in `PORTS.md`.
+
+## Layout
+
+Programs live two levels down: a **group**, then a **technology**, then the program itself.
+
+```
+<group>/<technology>/<program>/
+```
+
+- Groups are `js/`, `php/`, `db/`, `rust/`, `cpp/`, `css/`, and `asm/`.
+- A technology directory groups programs that share a stack (for example `js/typescript/` or `db/postgres/`).
+- Every technology has one reference program named `<technology>-sandbox`. That is the original starter this repo shipped with.
+- Add another program by putting a sibling folder next to the `-sandbox`. Each technology directory has a `README.md` that explains how.
+
+Two groups are themselves a single technology, so their programs sit directly under the group with no technology level: `rust/` and `cpp/`.
 
 ## Structure
 
 ```
-mise.toml                     Node 24, pnpm 10, and Rust stable
-PORTS.md                      host port registry
-scripts/new-project.ps1       copy a group template into a new folder
-scripts/new-project.sh        same scaffold for bash
-scripts/templates/            starters used by the scaffold
-js/javascript/                Node, JavaScript only
-js/typescript/                Node and the TypeScript compiler
-js/next-app/                  Next.js, port 3000
-js/react-app/                 Vite + React, port 5173
-js/angular-app/               Angular, Node 22, port 4200
-js/vue-app/                   Vite + Vue, port 5174
-js/nest-api/                  Nest, port 3001
-js/graphql-api/               GraphQL Yoga, port 4000
-php/laravel-app/              PHP 8.4 + MySQL, port 8000
-php/wordpress-site/           WordPress + MariaDB, port 8080
-db/postgres/                  PostgreSQL 18, port 5432
-db/mysql/                     MySQL 8.4, port 3306
-db/sqlite/                    SQLite file, no host port
-rust/hello/                   Cargo crate
-cpp/hello/                    CMake project, optional dev container
-css/plain/                    CSS files, no toolchain
-css/tailwind-playground/      Tailwind 4, port 5175
-asm/x86-nasm/                 Linux x86-64, NASM
-asm/arm64/                    Linux AArch64, QEMU
-asm/wasm-wat/                 WebAssembly text format, wabt
+mise.toml                        Node 24, pnpm 10, and Rust stable
+PORTS.md                         host port registry
+scripts/new-project.ps1          scaffold a new program
+scripts/new-project.sh           same scaffold for bash
+scripts/templates/               starters used by the scaffold
+js/javascript/javascript-sandbox/      Node, JavaScript only
+js/typescript/typescript-sandbox/      Node + the TypeScript compiler
+js/next/next-sandbox/                  Next.js, port 3000
+js/react/react-sandbox/                Vite + React, port 5173
+js/angular/angular-sandbox/            Angular, Node 22, port 4200
+js/vue/vue-sandbox/                    Vite + Vue, port 5174
+js/nest/nest-sandbox/                  Nest, port 3001
+js/graphql/graphql-sandbox/            GraphQL Yoga, port 4000
+php/laravel/laravel-sandbox/           PHP 8.4 + MySQL, port 8000
+php/wordpress/wordpress-sandbox/       WordPress + MariaDB, port 8080
+db/postgres/postgres-sandbox/          PostgreSQL 18, port 5432
+db/mysql/mysql-sandbox/                MySQL 8.4, port 3306
+db/sqlite/sqlite-sandbox/              SQLite file, no host port
+rust/rust-sandbox/                     Cargo crate (reference)
+rust/rust-repl/                        an additional Rust program
+cpp/cpp-sandbox/                       CMake project, optional dev container
+css/plain/plain-sandbox/               CSS files, no toolchain
+css/tailwind/tailwind-sandbox/         Tailwind 4, port 5175
+asm/x86-nasm/x86-nasm-sandbox/         Linux x86-64, NASM
+asm/arm64/arm64-sandbox/               Linux AArch64, QEMU
+asm/wasm-wat/wasm-wat-sandbox/         WebAssembly text format, wabt
 ```
 
-`js/`, `php/`, `db/`, `rust/`, `cpp/`, `css/`, and `asm/` are plain directories. They hold projects and nothing else: no manifest, no linter config, and no Tailwind or PostCSS config.
+`js/`, `php/`, `db/`, `rust/`, `cpp/`, `css/`, and `asm/` hold technology directories, and the technology directories hold programs. Only programs carry manifests; there is no manifest at the group or technology level.
 
 ## Isolation
 
-- Every project has its own manifest (`package.json`, `composer.json`, `Cargo.toml`, or `CMakeLists.txt`) and its own `.gitignore`.
-- The repo root has no `package.json`, `pnpm-workspace.yaml`, `tsconfig`, ESLint, Prettier, Tailwind, PostCSS, or Cargo workspace. Tools that search parent directories stop before they find another project.
-- Node, pnpm, and Rust come from [mise](https://mise.jdx.dev/). JS projects pin Node again in their own `mise.toml`. `js/angular-app` stays on Node 22. The other JS apps pin Node 24.
-- Run package CLIs from the project (`pnpm exec`, `pnpm dlx`). Leave `ng`, `nest`, `next`, and Tailwind uninstalled globally.
-- PHP, assembly, PostgreSQL, MySQL, and SQLite run in Docker. Each compose file sets its own project name and network. A database belongs to that compose project only. Laravel and WordPress do not use `db/postgres` or `db/mysql`. `js/graphql-api` keeps its notes in memory.
-- Vite apps set `strictPort`, so a busy port fails instead of moving to the next number.
+- Every program has its own manifest (`package.json`, `composer.json`, `Cargo.toml`, or `CMakeLists.txt`) and its own `.gitignore`.
+- The repo root has no `package.json`, `pnpm-workspace.yaml`, `tsconfig`, ESLint, Prettier, Tailwind, PostCSS, or Cargo workspace. Tools that search parent directories stop before they find another program.
+- Node, pnpm, and Rust come from [mise](https://mise.jdx.dev/). JS programs pin Node again in their own `mise.toml`. `js/angular/angular-sandbox` stays on Node 22. The other JS programs pin Node 24.
+- Run package CLIs from the program (`pnpm exec`, `pnpm dlx`). Leave `ng`, `nest`, `next`, and Tailwind uninstalled globally.
+- PHP, assembly, PostgreSQL, MySQL, and SQLite run in Docker. Each compose file sets its own project name and network. A database belongs to that compose project only. Laravel and WordPress do not use `db/postgres/postgres-sandbox` or `db/mysql/mysql-sandbox`. `js/graphql/graphql-sandbox` keeps its notes in memory.
+- Vite programs set `strictPort`, so a busy port fails instead of moving to the next number.
 
 ## Prerequisites
 
@@ -53,21 +69,21 @@ Install [mise](https://mise.jdx.dev/getting-started.html) and Docker Desktop. On
 mise install
 ```
 
-That installs Node, pnpm, and Rust on the host. PHP, Composer, NASM, QEMU, PostgreSQL, MySQL, and SQLite stay inside images. The C++ sandbox uses a host CMake and compiler, or the dev container described under `cpp/hello`.
+That installs Node, pnpm, and Rust on the host. PHP, Composer, NASM, QEMU, PostgreSQL, MySQL, and SQLite stay inside images. The C++ sandbox uses a host CMake and compiler, or the dev container described under `cpp/cpp-sandbox`.
 
 Start Docker Desktop before any `docker compose` command.
 
 ## JavaScript and TypeScript
 
-`js/javascript` and `js/typescript` are the language sandboxes. The other folders under `js/` are framework apps. Each one has its own `package.json`. The TypeScript sandbox is the only one of the two with a `tsconfig.json`, and that file does not extend anything above the project.
+`js/javascript` and `js/typescript` are the language technologies. The other directories under `js/` are framework technologies. Each technology has a `-sandbox` reference program with its own `package.json`; add more programs alongside it (see each technology's `README.md`).
 
-Framework apps install dependencies into their own `node_modules`. From the project directory:
+Framework programs install dependencies into their own `node_modules`. From the program directory:
 
 ```powershell
 pnpm install
 ```
 
-### js/javascript
+### js/javascript/javascript-sandbox
 
 Node on the JavaScript sources in this folder. There is no TypeScript compiler, no framework, and no dependency install.
 
@@ -77,7 +93,7 @@ pnpm start
 
 That runs `src/index.js`.
 
-### js/typescript
+### js/typescript/typescript-sandbox
 
 Node plus the TypeScript compiler, installed in this project. There is no framework.
 
@@ -89,7 +105,7 @@ pnpm start
 
 `pnpm build` writes JavaScript to `dist`. `pnpm start` runs `dist/index.js`.
 
-### js/next-app
+### js/next/next-sandbox
 
 Next.js on port 3000. Node 24.
 
@@ -106,7 +122,7 @@ pnpm start
 
 `pnpm build` writes the production output to `.next`. `pnpm start` serves that build on port 3000.
 
-### js/react-app
+### js/react/react-sandbox
 
 Vite and React on port 5173. Node 24.
 
@@ -123,7 +139,7 @@ pnpm preview
 
 `pnpm build` writes static files to `dist`. `pnpm preview` serves that folder on port 5173.
 
-### js/angular-app
+### js/angular/angular-sandbox
 
 Angular on port 4200. This folder pins Node 22 in `mise.toml`. `@angular/cli` is a dev dependency of this project.
 
@@ -139,7 +155,7 @@ pnpm build
 
 `pnpm build` writes the production bundle to `dist/angular-app`.
 
-### js/vue-app
+### js/vue/vue-sandbox
 
 Vite and Vue on port 5174. Node 24. React already uses Vite's default port 5173.
 
@@ -156,7 +172,7 @@ pnpm preview
 
 `pnpm build` writes static files to `dist`. `pnpm preview` serves that folder on port 5174.
 
-### js/nest-api
+### js/nest/nest-sandbox
 
 Nest on port 3001. Node 24. `@nestjs/cli` is a dev dependency of this project. `GET /` returns `{ "ok": true, "service": "nest-api" }`.
 
@@ -173,7 +189,7 @@ pnpm start
 
 `pnpm exec nest build` compiles TypeScript into `dist`. `pnpm start` compiles if needed and runs the API on port 3001.
 
-### js/graphql-api
+### js/graphql/graphql-sandbox
 
 GraphQL Yoga on port 4000. Node 24 runs `src/index.ts` directly, so there is no compile step and no build artifact. The schema and the `notes` list live in this process.
 
@@ -194,11 +210,11 @@ query {
 
 ## CSS
 
-### css/plain
+### css/plain/plain-sandbox
 
-Stylesheet and page only. Open `css/plain/index.html` in a browser. There is nothing to install or build.
+Stylesheet and page only. Open `css/plain/plain-sandbox/index.html` in a browser. There is nothing to install or build.
 
-### css/tailwind-playground
+### css/tailwind/tailwind-sandbox
 
 Tailwind 4 and Vite on port 5175. Tailwind is installed in this folder. Configuration is `@import "tailwindcss"` in `src/styles.css`. Node 24.
 
@@ -219,7 +235,7 @@ pnpm build
 
 PHP and Composer are inside the images. Build the Laravel image before the first start. WordPress uses published images, so Compose pulls them on start.
 
-### php/laravel-app
+### php/laravel/laravel-sandbox
 
 Compose project `sandbox-laravel`, network `sandbox-laravel-net`, host port 8000. MySQL is reachable only as `db` on that network.
 
@@ -238,7 +254,7 @@ docker compose run --rm --no-deps app sh -c "cp -a /tmp/laravel/. /var/www/html/
 
 Keep this compose file. After that copy, `docker compose up --build` still starts the app. Laravel's Vite assets, including Tailwind, belong in this project.
 
-### php/wordpress-site
+### php/wordpress/wordpress-sandbox
 
 Compose project `sandbox-wordpress`, network `sandbox-wordpress-net`, host port 8080. MariaDB stays on that network. WordPress core stays in the `wp-data` volume.
 
@@ -252,7 +268,7 @@ Open `http://localhost:8080` and finish the installer. There is no local build s
 
 These three servers are independent of Laravel, WordPress, and GraphQL. Compose pulls the PostgreSQL and MySQL images. SQLite is built from this repo.
 
-### db/postgres
+### db/postgres/postgres-sandbox
 
 PostgreSQL 18. Compose project `sandbox-postgres`, network `sandbox-postgres-net`, host port 5432.
 
@@ -266,9 +282,9 @@ host=localhost port=5432 dbname=sandbox user=sandbox password=sandbox
 
 `init/01-schema.sql` creates the `notes` table the first time the volume is created. Later starts keep that volume. There is no application compile step.
 
-### db/mysql
+### db/mysql/mysql-sandbox
 
-MySQL 8.4. Compose project `sandbox-mysql`, network `sandbox-mysql-net`, host port 3306. This is separate from the MySQL service inside `php/laravel-app`.
+MySQL 8.4. Compose project `sandbox-mysql`, network `sandbox-mysql-net`, host port 3306. This is separate from the MySQL service inside `php/laravel/laravel-sandbox`.
 
 ```powershell
 docker compose up
@@ -280,7 +296,7 @@ mysql://sandbox:sandbox@localhost:3306/sandbox
 
 `init/01-schema.sql` creates the `notes` table the first time the volume is created. There is no application compile step.
 
-### db/sqlite
+### db/sqlite/sqlite-sandbox
 
 SQLite in compose project `sandbox-sqlite`, network `sandbox-sqlite-net`. There is no host port. The `sqlite3` binary stays in the image, and `sandbox.db` stays in this directory.
 
@@ -298,7 +314,9 @@ docker compose run --rm sqlite sandbox.db
 
 ## Rust
 
-### rust/hello
+`rust/` is itself the technology, so Rust programs sit directly under it.
+
+### rust/rust-sandbox
 
 `rust-toolchain.toml` pins stable for this folder. There is no `Cargo.toml` above this directory, so Cargo treats the crate as its own package.
 
@@ -320,9 +338,13 @@ cargo build --release
 
 The release binary is `target/release/hello` (`target/release/hello.exe` on Windows).
 
+`rust/rust-repl/` is a second Rust program in this group and shows the pattern for adding another.
+
 ## C++
 
-### cpp/hello
+`cpp/` is itself the technology, so C++ programs sit directly under it.
+
+### cpp/cpp-sandbox
 
 Configure an out-of-tree build, then compile. Objects stay in `build/`.
 
@@ -339,7 +361,7 @@ Open this folder in the dev container (`mcr.microsoft.com/devcontainers/cpp:debi
 
 Each target has its own image, compose project, and network. `docker compose run` builds the image on first use, then `make` assembles and runs the program inside the container. The Linux binaries do not run on the Windows host.
 
-### asm/x86-nasm
+### asm/x86-nasm/x86-nasm-sandbox
 
 Target: Linux x86-64. Assembler: NASM, Intel syntax. Compose project `sandbox-asm-x86`, network `sandbox-asm-x86-net`.
 
@@ -349,7 +371,7 @@ docker compose run --rm app make
 
 `make` writes `hello` in this directory and runs it. Output is `hello from x86-64`.
 
-### asm/arm64
+### asm/arm64/arm64-sandbox
 
 Target: Linux AArch64. Assembler: GNU as, via `aarch64-linux-gnu-gcc`. The image runs the static binary with `qemu-aarch64`. Compose project `sandbox-asm-arm64`, network `sandbox-asm-arm64-net`.
 
@@ -359,7 +381,7 @@ docker compose run --rm app make
 
 Output is `hello from aarch64`.
 
-### asm/wasm-wat
+### asm/wasm-wat/wasm-wat-sandbox
 
 Target: WebAssembly, text format. Assembler: `wat2wasm` from wabt. Compose project `sandbox-asm-wasm`, network `sandbox-asm-wasm-net`.
 
@@ -369,17 +391,27 @@ docker compose run --rm app make
 
 `make` writes `hello.wasm` and prints the module with `wasm-objdump`. `hello.wat` exports `add(i32, i32) -> i32`.
 
-## Add a project
+## Add a program
+
+To add a new program, target its technology:
 
 ```powershell
-./scripts/new-project.ps1 js my-experiment
+./scripts/new-project.ps1 js/typescript my-experiment
 ```
 
 ```bash
-bash scripts/new-project.sh js my-experiment
+bash scripts/new-project.sh js/typescript my-experiment
 ```
 
-Groups: `js`, `php`, `rust`, `cpp`, `css`, `asm`.
+The scaffold copies `scripts/templates/<group>` into `<group>/<technology>/<name>`. `rust` and `cpp` take no technology:
+
+```powershell
+./scripts/new-project.ps1 rust my-crate
+```
+
+Groups: `js`, `php`, `rust`, `cpp`, `css`, `asm`. (There is no `db` template; copy a `db/*/*-sandbox` and adapt it.)
+
+For technologies where the group template is not the right starting point, copy the `-sandbox` program instead — for example, copy `js/react/react-sandbox` to add another React program. Every technology directory has a `README.md` with the exact steps.
 
 Work inside the new directory. If it listens on a port, change the template default and add a row to `PORTS.md`. The CSS template defaults to port 5199. The PHP template defaults to port 8090.
 

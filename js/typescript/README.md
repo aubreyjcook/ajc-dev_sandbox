@@ -1,11 +1,17 @@
-# typescript
+# TypeScript
 
-Node sandbox for TypeScript. The compiler is installed in this folder. There is no framework, and this `tsconfig.json` does not extend a parent config. Node 24 is pinned in `mise.toml`.
+Node plus the TypeScript compiler. No framework.
+
+## Programs
+
+- [`typescript-sandbox/`](typescript-sandbox/) — `pnpm build` compiles `src/` to `dist/`, `pnpm start` runs `dist/index.js`.
+
+## Add a program
+
+Either copy `typescript-sandbox/` to a new sibling folder, or scaffold one:
 
 ```powershell
-pnpm install
-pnpm build
-pnpm start
+./scripts/new-project.ps1 js/typescript my-program
 ```
 
-`pnpm build` runs `tsc` and writes JavaScript to `dist`. `pnpm start` runs `dist/index.js`.
+Change the `name` in `package.json` and keep `tsconfig.json` self-contained (do not extend anything above the project).

@@ -1,8 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true, Position = 0)]
-    [ValidateSet("js", "php", "rust", "cpp", "css", "asm")]
-    [string]$Group,
+    [string]$Target,
 
     [Parameter(Mandatory = $true, Position = 1)]
     [ValidatePattern("^[a-z][a-z0-9-]*$")]
@@ -11,17 +10,37 @@ param(
 
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
-$template = Join-Path $PSScriptRoot "templates\$Group"
-$dest = Join-Path $root "$Group\$Name"
 
-if (-not (Test-Path -LiteralPath $template)) {
-    throw "missing template: $template"
+$validGroups = @("js", "php", "rust", "cpp", "css", "asm")
+$singleTech = @("rust", "cpp")
+
+$parts = $Target -split "/"
+if ($parts.Count -gt 2 -or $parts[0] -eq "") {
+    throw "usage: new-project.ps1 <group[/tech]> <name>"
 }
+$group = $parts[0]
+$tech = if ($parts.Count -eq 2) { $parts[1] } else { $null }
+
+if ($validGroups -notcontains $group) {
+    throw "unknown group '$group'. Groups: $($validGroups -join ', ')"
+}
+
+$template = Join-Path $PSScriptRoot "templates\$group"
+if (-not (Test-Path -LiteralPath $template)) {
+    throw "missing template: $template (group '$group' has no scaffold)"
+}
+
+if (-not $tech -and $singleTech -notcontains $group) {
+    throw "group '$group' needs a technology, e.g. new-project.ps1 $group/<tech> $Name"
+}
+
+$relative = if ($tech) { "$group/$tech/$Name" } else { "$group/$Name" }
+$dest = Join-Path $root $relative
 if (Test-Path -LiteralPath $dest) {
     throw "already exists: $dest"
 }
 
-New-Item -ItemType Directory -Force -Path (Join-Path $root $Group) | Out-Null
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $dest) | Out-Null
 Copy-Item -LiteralPath $template -Destination $dest -Recurse
 
 $utf8 = New-Object System.Text.UTF8Encoding $false
@@ -33,5 +52,5 @@ Get-ChildItem -LiteralPath $dest -Recurse -File | ForEach-Object {
     }
 }
 
-Write-Output "created $Group/$Name"
+Write-Output "created $relative"
 Write-Output "if it serves traffic, set a free port and add a row to PORTS.md"

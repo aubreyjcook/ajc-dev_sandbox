@@ -1,5 +1,11 @@
-# plain
+# Plain CSS
 
-CSS files only. There is no package manifest and no dev server. Open `index.html` in a browser.
+Stylesheet and page only. No package manifest, no dev server, no build.
 
-Tailwind does not belong in this folder. Use `css/tailwind-playground`, or install Tailwind inside the framework project that uses it.
+## Programs
+
+- [`plain-sandbox/`](plain-sandbox/) — open `index.html` in a browser.
+
+## Add a program
+
+Copy `plain-sandbox/` to a new sibling folder and edit the HTML/CSS. Nothing to install or build.

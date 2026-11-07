@@ -1,13 +1,11 @@
-# postgres
+# PostgreSQL
 
-PostgreSQL 18 in compose project `sandbox-postgres`, network `sandbox-postgres-net`, host port 5432. The data volume belongs to this project. Laravel, WordPress, MySQL, SQLite, and GraphQL do not connect to it.
+PostgreSQL 18 in Docker.
 
-```powershell
-docker compose up
-```
+## Programs
 
-```text
-host=localhost port=5432 dbname=sandbox user=sandbox password=sandbox
-```
+- [`postgres-sandbox/`](postgres-sandbox/) — host port 5432, db/user/password all `sandbox`.
 
-`init/01-schema.sql` loads the `notes` table the first time the volume is created. Later starts keep the existing volume.
+## Add a program
+
+Copy `postgres-sandbox/` to a new sibling folder. Give it a unique compose project name and network, a free host port, and a distinct volume. Seed your schema in `init/`. Add the port to `PORTS.md`.

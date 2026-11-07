@@ -1,16 +1,11 @@
-# sqlite
+# SQLite
 
-SQLite in compose project `sandbox-sqlite`, network `sandbox-sqlite-net`. There is no host port. The `sqlite3` binary stays in the image, and `sandbox.db` stays in this directory.
+SQLite built from a small image. No host port; `sandbox.db` stays in the program folder.
 
-```powershell
-docker compose run --rm sqlite sandbox.db ".read schema.sql"
-docker compose run --rm sqlite sandbox.db "SELECT * FROM notes;"
-```
+## Programs
 
-The second command prints the seeded note. Pass more arguments to open the shell:
+- [`sqlite-sandbox/`](sqlite-sandbox/) — `schema.sql` seeds a `notes` table.
 
-```powershell
-docker compose run --rm sqlite sandbox.db
-```
+## Add a program
 
-GraphQL and the other database projects do not open this file.
+Copy `sqlite-sandbox/` to a new sibling folder. Give it a unique compose project name and network, and edit `schema.sql` to match your tables.
