@@ -25,6 +25,8 @@ Laravel and WordPress keep their databases on a private compose network. `db/pos
 | `rust/rust-sandbox` | CLI | none |
 | `rust/rust-repl` | CLI | none |
 | `cpp/cpp-sandbox` | CLI | none |
+| `java/java-sandbox` | CLI | none |
+| `python/python-sandbox` | CLI | none |
 | `asm/x86-nasm/x86-nasm-sandbox` | CLI in Docker | none |
 | `asm/arm64/arm64-sandbox` | CLI in Docker | none |
 | `asm/wasm-wat/wasm-wat-sandbox` | CLI in Docker | none |

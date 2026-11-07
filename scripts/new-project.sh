@@ -4,8 +4,8 @@ set -euo pipefail
 
 usage() {
   echo "usage: scripts/new-project.sh <group[/tech]> <name>" >&2
-  echo "  groups: js php rust cpp css asm" >&2
-  echo "  rust and cpp need no tech (single technology); the others do." >&2
+  echo "  groups: js php rust cpp css asm java python" >&2
+  echo "  rust, cpp, java, and python need no tech (single technology); the others do." >&2
   exit 1
 }
 
@@ -24,7 +24,7 @@ if [[ "$target" == */* ]]; then
 fi
 
 case "$group" in
-  js|php|rust|cpp|css|asm) ;;
+  js|php|rust|cpp|css|asm|java|python) ;;
   *)
     echo "unknown group: $group" >&2
     usage
@@ -44,7 +44,7 @@ fi
 
 if [[ -z "$tech" ]]; then
   case "$group" in
-    rust|cpp) rel="$group/$name" ;;
+    rust|cpp|java|python) rel="$group/$name" ;;
     *)
       echo "group '$group' needs a technology, e.g. scripts/new-project.sh $group/<tech> $name" >&2
       exit 1

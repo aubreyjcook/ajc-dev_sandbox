@@ -12,17 +12,17 @@ Programs live two levels down: a **group**, then a **technology**, then the prog
 <group>/<technology>/<program>/
 ```
 
-- Groups are `js/`, `php/`, `db/`, `rust/`, `cpp/`, `css/`, and `asm/`.
+- Groups are `js/`, `php/`, `db/`, `rust/`, `cpp/`, `java/`, `python/`, `css/`, and `asm/`.
 - A technology directory groups programs that share a stack (for example `js/typescript/` or `db/postgres/`).
 - Every technology has one reference program named `<technology>-sandbox`. That is the original starter this repo shipped with.
 - Add another program by putting a sibling folder next to the `-sandbox`. Each technology directory has a `README.md` that explains how.
 
-Two groups are themselves a single technology, so their programs sit directly under the group with no technology level: `rust/` and `cpp/`.
+Four groups are themselves a single technology, so their programs sit directly under the group with no technology level: `rust/`, `cpp/`, `java/`, and `python/`.
 
 ## Structure
 
 ```
-mise.toml                        Node 24, pnpm 10, and Rust stable
+mise.toml                        Node, pnpm, Rust, Java 21, Python 3.12
 PORTS.md                         host port registry
 scripts/new-project.ps1          scaffold a new program
 scripts/new-project.sh           same scaffold for bash
@@ -44,6 +44,8 @@ db/sqlite/sqlite-sandbox/              SQLite file, no host port
 rust/rust-sandbox/                     Cargo crate (reference)
 rust/rust-repl/                        an additional Rust program
 cpp/cpp-sandbox/                       CMake project, optional dev container
+java/java-sandbox/                     plain Java, JDK 21
+python/python-sandbox/                 plain Python 3.12
 css/plain/plain-sandbox/               CSS files, no toolchain
 css/tailwind/tailwind-sandbox/         Tailwind 4, port 5175
 asm/x86-nasm/x86-nasm-sandbox/         Linux x86-64, NASM
@@ -51,13 +53,13 @@ asm/arm64/arm64-sandbox/               Linux AArch64, QEMU
 asm/wasm-wat/wasm-wat-sandbox/         WebAssembly text format, wabt
 ```
 
-`js/`, `php/`, `db/`, `rust/`, `cpp/`, `css/`, and `asm/` hold technology directories, and the technology directories hold programs. Only programs carry manifests; there is no manifest at the group or technology level.
+`js/`, `php/`, `db/`, `rust/`, `cpp/`, `java/`, `python/`, `css/`, and `asm/` hold technology directories, and the technology directories hold programs. Only programs carry manifests; there is no manifest at the group or technology level.
 
 ## Isolation
 
 - Every program has its own manifest (`package.json`, `composer.json`, `Cargo.toml`, or `CMakeLists.txt`) and its own `.gitignore`.
 - The repo root has no `package.json`, `pnpm-workspace.yaml`, `tsconfig`, ESLint, Prettier, Tailwind, PostCSS, or Cargo workspace. Tools that search parent directories stop before they find another program.
-- Node, pnpm, and Rust come from [mise](https://mise.jdx.dev/). JS programs pin Node again in their own `mise.toml`. `js/angular/angular-sandbox` stays on Node 22. The other JS programs pin Node 24.
+- Node, pnpm, Rust, Java, and Python come from [mise](https://mise.jdx.dev/). JS programs pin Node again in their own `mise.toml`. `js/angular/angular-sandbox` stays on Node 22. The other JS programs pin Node 24.
 - Run package CLIs from the program (`pnpm exec`, `pnpm dlx`). Leave `ng`, `nest`, `next`, and Tailwind uninstalled globally.
 - PHP, assembly, PostgreSQL, MySQL, and SQLite run in Docker. Each compose file sets its own project name and network. A database belongs to that compose project only. Laravel and WordPress do not use `db/postgres/postgres-sandbox` or `db/mysql/mysql-sandbox`. `js/graphql/graphql-sandbox` keeps its notes in memory.
 - Vite programs set `strictPort`, so a busy port fails instead of moving to the next number.
@@ -70,7 +72,7 @@ Install [mise](https://mise.jdx.dev/getting-started.html) and Docker Desktop. On
 mise install
 ```
 
-That installs Node, pnpm, and Rust on the host. PHP, Composer, NASM, QEMU, PostgreSQL, MySQL, and SQLite stay inside images. The C++ sandbox uses a host CMake and compiler, or the dev container described under `cpp/cpp-sandbox`.
+That installs Node, pnpm, Rust, Java, and Python on the host. PHP, Composer, NASM, QEMU, PostgreSQL, MySQL, and SQLite stay inside images. The C++ sandbox uses a host CMake and compiler, or the dev container described under `cpp/cpp-sandbox`.
 
 Start Docker Desktop before any `docker compose` command.
 
@@ -368,6 +370,35 @@ With Makefiles or Ninja, run `build/hello`. With the Visual Studio generator, ru
 
 Open this folder in the dev container (`mcr.microsoft.com/devcontainers/cpp:debian-12`) when you want that image's GCC instead of the host compiler. Inside the container, use the same CMake commands, then run `./build/hello`.
 
+## Java
+
+`java/` is itself the technology, so Java programs sit directly under it.
+
+### java/java-sandbox
+
+Plain Java with no build tool or framework. The JDK's own `javac` and `java` are the whole toolchain, and Java 21 (Temurin) is pinned in `mise.toml`.
+
+```powershell
+javac -d build src/Main.java
+java -cp build Main
+```
+
+`javac` writes `Main.class` into `build/`. `java` runs it and prints `hello from java`.
+
+## Python
+
+`python/` is itself the technology, so Python programs sit directly under it.
+
+### python/python-sandbox
+
+Plain Python with no framework or build step. Python 3.12 is pinned in `mise.toml`.
+
+```powershell
+python src/main.py
+```
+
+Prints `hello from python`.
+
 ## Assembly
 
 Each target has its own image, compose project, and network. `docker compose run` builds the image on first use, then `make` assembles and runs the program inside the container. The Linux binaries do not run on the Windows host.
@@ -414,13 +445,13 @@ To add a new program, target its technology:
 bash scripts/new-project.sh js/typescript my-experiment
 ```
 
-The scaffold copies `scripts/templates/<group>` into `<group>/<technology>/<name>`. `rust` and `cpp` take no technology:
+The scaffold copies `scripts/templates/<group>` into `<group>/<technology>/<name>`. `rust`, `cpp`, `java`, and `python` take no technology:
 
 ```powershell
 ./scripts/new-project.ps1 rust my-crate
 ```
 
-Groups: `js`, `php`, `rust`, `cpp`, `css`, `asm`. (There is no `db` template; copy a `db/*/*-sandbox` and adapt it.)
+Groups: `js`, `php`, `rust`, `cpp`, `java`, `python`, `css`, `asm`. (There is no `db` template; copy a `db/*/*-sandbox` and adapt it.)
 
 For technologies where the group template is not the right starting point, copy the `-sandbox` program instead — for example, copy `js/react/react-sandbox` to add another React program. Every technology directory has a `README.md` with the exact steps.
 

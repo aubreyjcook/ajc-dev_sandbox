@@ -11,8 +11,8 @@ param(
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 
-$validGroups = @("js", "php", "rust", "cpp", "css", "asm")
-$singleTech = @("rust", "cpp")
+$validGroups = @("js", "php", "rust", "cpp", "css", "asm", "java", "python")
+$singleTech = @("rust", "cpp", "java", "python")
 
 $parts = $Target -split "/"
 if ($parts.Count -gt 2 -or $parts[0] -eq "") {

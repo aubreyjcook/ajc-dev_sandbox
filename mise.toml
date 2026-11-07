@@ -4,3 +4,5 @@
 node = "24"
 pnpm = "10"
 rust = "stable"
+java = "temurin-21"
+python = "3.12"
