@@ -5,6 +5,7 @@ C++ is a single-technology group, so programs sit directly under `cpp/` with no 
 ## Programs
 
 - [`cpp-sandbox/`](cpp-sandbox/) — a CMake hello project with an optional dev container.
+- [`cpp-wasm/`](cpp-wasm/) — C++ compiled to WebAssembly (clang in Docker).
 
 ## Add a program
 

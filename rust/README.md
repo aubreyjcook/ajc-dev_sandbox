@@ -6,6 +6,7 @@ Rust is a single-technology group, so programs sit directly under `rust/` with n
 
 - [`rust-sandbox/`](rust-sandbox/) — a hello crate.
 - [`rust-repl/`](rust-repl/) — a small arithmetic REPL.
+- [`rust-wasm/`](rust-wasm/) — Rust compiled to WebAssembly.
 
 ## Add a program
 

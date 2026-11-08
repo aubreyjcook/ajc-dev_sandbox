@@ -234,6 +234,21 @@ export const sandboxes = [
     description: "Rust arithmetic REPL",
     command: "cargo run",
   },
+  {
+    id: "rust-wasm",
+    name: "rust-wasm",
+    group: "rust",
+    path: "rust/rust-wasm",
+    type: "run",
+    port: null,
+    description: "Rust → WebAssembly",
+    build: [
+      { cmd: "rustup", args: ["target", "add", "wasm32-unknown-unknown"] },
+      { cmd: "cargo", args: ["build", "--release", "--target", "wasm32-unknown-unknown"] },
+    ],
+    buildMarker: "target/wasm32-unknown-unknown/release/rust_wasm.wasm",
+    run: { cmd: "node", args: ["run.mjs"] },
+  },
 
   // --- cpp ---
   {
@@ -250,6 +265,18 @@ export const sandboxes = [
     ],
     buildMarker: "build",
     run: { binaries: ["build/hello", "build/Debug/hello.exe"] },
+  },
+  {
+    id: "cpp-wasm",
+    name: "cpp-wasm",
+    group: "cpp",
+    path: "cpp/cpp-wasm",
+    type: "run",
+    port: null,
+    description: "C++ → WebAssembly",
+    build: [{ cmd: "docker", args: ["compose", "run", "--rm", "app", "make"] }],
+    buildMarker: "add.wasm",
+    run: { cmd: "node", args: ["run.mjs"] },
   },
 
   // --- java ---

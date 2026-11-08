@@ -1,0 +1,14 @@
+name: sandbox-cpp-wasm
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/work
+    working_dir: /work
+    networks:
+      - wasm
+
+networks:
+  wasm:
+    name: sandbox-cpp-wasm-net

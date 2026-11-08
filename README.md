@@ -45,7 +45,9 @@ db/mysql/mysql-sandbox/                MySQL 8.4, port 3306
 db/sqlite/sqlite-sandbox/              SQLite file, no host port
 rust/rust-sandbox/                     Cargo crate (reference)
 rust/rust-repl/                        an additional Rust program
+rust/rust-wasm/                       Rust compiled to WebAssembly
 cpp/cpp-sandbox/                       CMake project, optional dev container
+cpp/cpp-wasm/                         C++ compiled to WebAssembly
 java/java-sandbox/                     plain Java, JDK 21
 python/python-sandbox/                 plain Python 3.12
 css/plain/plain-sandbox/               CSS files, no toolchain
@@ -372,6 +374,17 @@ The release binary is `target/release/hello` (`target/release/hello.exe` on Wind
 
 `rust/rust-repl/` is a second Rust program in this group and shows the pattern for adding another.
 
+### rust/rust-wasm
+
+Rust compiled to WebAssembly (`wasm32-unknown-unknown`). `src/lib.rs` exports an `add` function; `run.mjs` loads the `.wasm` and calls it from Node.
+
+```powershell
+cargo build --release --target wasm32-unknown-unknown
+node run.mjs
+```
+
+The target is pinned in `rust-toolchain.toml`, so rustup installs it on the first build. Output is `add(2, 3) = 5`.
+
 ## C++
 
 `cpp/` is itself the technology, so C++ programs sit directly under it.
@@ -388,6 +401,17 @@ cmake --build build
 With Makefiles or Ninja, run `build/hello`. With the Visual Studio generator, run `build/Debug/hello.exe`.
 
 Open this folder in the dev container (`mcr.microsoft.com/devcontainers/cpp:debian-12`) when you want that image's GCC instead of the host compiler. Inside the container, use the same CMake commands, then run `./build/hello`.
+
+### cpp/cpp-wasm
+
+C++ compiled to a standalone WebAssembly module with `clang --target=wasm32` inside Docker. `add.cpp` exports an `add` function; `run.mjs` loads `add.wasm` and calls it from Node.
+
+```powershell
+docker compose run --rm app make
+node run.mjs
+```
+
+Output is `add(2, 3) = 5`.
 
 ## Java
 
