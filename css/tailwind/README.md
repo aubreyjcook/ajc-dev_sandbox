@@ -15,3 +15,7 @@ Copy `tailwind-sandbox/` to a new sibling folder, or scaffold one:
 ```
 
 Change the `name` in `package.json`, set a free port in `vite.config.ts`, and add it to `PORTS.md`. Then `pnpm install` and `pnpm dev`.
+
+## Resources
+
+- [Tailwind CSS documentation](https://tailwindcss.com/docs) — the official, exhaustive guide.

@@ -9,3 +9,8 @@ Linux AArch64, assembled with `aarch64-linux-gnu-gcc` and run under QEMU in Dock
 ## Add a program
 
 Copy `arm64-sandbox/` to a new sibling folder. Give it a unique compose project name and network, and adapt the `Makefile`/`Dockerfile` if your target differs.
+
+## Resources
+
+- [Arm Architecture Reference Manual](https://developer.arm.com/documentation/ddi0487/latest/) — the AArch64 ISA reference.
+- [GNU Assembler (as) manual](https://sourceware.org/binutils/docs/as/) — the assembler syntax.

@@ -15,3 +15,8 @@ Scaffold one:
 ```
 
 or create a folder with `src/Main.java` and your own `mise.toml`. Each program keeps its own `mise.toml` and `.gitignore`; there is no shared build config above `java/`.
+
+## Resources
+
+- [Java documentation (JDK 21)](https://docs.oracle.com/en/java/javase/21/) — the official guides and API.
+- [The Java Language Specification](https://docs.oracle.com/javase/specs/jls/se21/html/) — the normative spec.

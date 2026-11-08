@@ -16,3 +16,9 @@ Either copy `typescript-sandbox/` to a new sibling folder, or scaffold one:
 ```
 
 Change the `name` in `package.json` and keep `tsconfig.json` self-contained (do not extend anything above the project).
+
+## Resources
+
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) — the official guide and reference.
+- [tsconfig reference](https://www.typescriptlang.org/tsconfig/) — every compiler option.
+- [TypeScript release notes](https://www.typescriptlang.org/docs/handbook/release-notes/overview.html) — per-version changes.

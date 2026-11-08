@@ -9,3 +9,8 @@ WordPress + MariaDB via published images.
 ## Add a program
 
 Copy `wordpress-sandbox/` to a new sibling folder. Give it a unique compose project name and network, a free host port, and a distinct `wp-data` volume. Add the port to `PORTS.md`, then `docker compose up`.
+
+## Resources
+
+- [WordPress Developer Resources](https://developer.wordpress.org/) — code reference, REST API, and block editor.
+- [WordPress.org documentation](https://wordpress.org/documentation/) — user and support docs.

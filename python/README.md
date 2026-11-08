@@ -15,3 +15,7 @@ Scaffold one:
 ```
 
 or create a folder with `src/main.py` and your own `mise.toml`. Each program keeps its own `mise.toml` and `.gitignore`; there is no shared config above `python/`.
+
+## Resources
+
+- [Python documentation](https://docs.python.org/3/) — the tutorial, language reference, and library reference.

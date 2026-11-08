@@ -16,3 +16,9 @@ Scaffold one:
 ```
 
 or copy `cpp-sandbox/` to a new sibling folder and change the project/executable name in `CMakeLists.txt`. Configure an out-of-tree build (`cmake -S . -B build`).
+
+## Resources
+
+- [cppreference.com](https://en.cppreference.com/w/) — the exhaustive C++ language and library reference.
+- [Emscripten documentation](https://emscripten.org/docs/) — for `cpp-wasm`.
+- [WebAssembly](https://webassembly.org/) — the WebAssembly format and specs.

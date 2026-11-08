@@ -10,3 +10,8 @@ Vite + React on Node 24.
 ## Add a program
 
 Copy `react-sandbox/` to a new sibling folder, change the `name` in `package.json`, and set a free port in `vite.config.ts` (Vite uses `strictPort`). Add the port to `PORTS.md`, then `pnpm install` and `pnpm dev`.
+
+## Resources
+
+- [react.dev](https://react.dev/) — the official documentation and tutorials.
+- [React reference](https://react.dev/reference/react) — hooks and API reference.

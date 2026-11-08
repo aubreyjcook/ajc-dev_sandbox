@@ -9,3 +9,7 @@ MySQL 8.4 in Docker.
 ## Add a program
 
 Copy `mysql-sandbox/` to a new sibling folder. Give it a unique compose project name and network, a free host port, and a distinct volume. Seed your schema in `init/`. Add the port to `PORTS.md`.
+
+## Resources
+
+- [MySQL reference manual](https://dev.mysql.com/doc/) — the official documentation.
