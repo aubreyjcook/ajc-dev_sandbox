@@ -5,6 +5,7 @@ Plain Node.js. No framework, no TypeScript compiler, no build step.
 ## Programs
 
 - [`javascript-sandbox/`](javascript-sandbox/) — Node runs `src/index.js` directly.
+- [`javascript-repl/`](javascript-repl/) — the Node REPL.
 
 ## Add a program
 

@@ -5,6 +5,7 @@ Java is a single-technology group, so programs sit directly under `java/` with n
 ## Programs
 
 - [`java-sandbox/`](java-sandbox/) — a plain Java hello program (`javac` + `java`).
+- [`java-repl/`](java-repl/) — the Java REPL (`jshell`).
 
 ## Add a program
 

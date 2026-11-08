@@ -7,6 +7,7 @@ Laravel and WordPress keep their databases on a private compose network. `db/pos
 | Project | Service | Host port |
 | --- | --- | --- |
 | `js/javascript/javascript-sandbox` | Node | none |
+| `js/javascript/javascript-repl` | CLI (REPL) | none |
 | `js/typescript/typescript-sandbox` | Node | none |
 | `js/typescript/typescript-repl` | CLI | none |
 | `js/next/next-sandbox` | Next.js | 3000 |
@@ -29,7 +30,9 @@ Laravel and WordPress keep their databases on a private compose network. `db/pos
 | `cpp/cpp-sandbox` | CLI | none |
 | `cpp/cpp-wasm` | CLI (WASM) | none |
 | `java/java-sandbox` | CLI | none |
+| `java/java-repl` | CLI (REPL) | none |
 | `python/python-sandbox` | CLI | none |
+| `python/python-repl` | CLI (REPL) | none |
 | `asm/x86-nasm/x86-nasm-sandbox` | CLI in Docker | none |
 | `asm/arm64/arm64-sandbox` | CLI in Docker | none |
 | `asm/wasm-wat/wasm-wat-sandbox` | CLI in Docker | none |

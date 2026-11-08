@@ -29,6 +29,7 @@ scripts/new-project.sh           same scaffold for bash
 scripts/templates/               starters used by the scaffold
 dashboard/                       local sandbox control panel (port 8787)
 js/javascript/javascript-sandbox/      Node, JavaScript only
+js/javascript/javascript-repl/         Node REPL
 js/typescript/typescript-sandbox/      Node + the TypeScript compiler
 js/typescript/typescript-repl/         interactive REPL (readline + vm)
 js/next/next-sandbox/                  Next.js, port 3000
@@ -49,7 +50,9 @@ rust/rust-wasm/                       Rust compiled to WebAssembly
 cpp/cpp-sandbox/                       CMake project, optional dev container
 cpp/cpp-wasm/                         C++ compiled to WebAssembly
 java/java-sandbox/                     plain Java, JDK 21
+java/java-repl/                         Java REPL (jshell)
 python/python-sandbox/                 plain Python 3.12
+python/python-repl/                     Python REPL
 css/plain/plain-sandbox/               CSS files, no toolchain
 css/tailwind/tailwind-sandbox/         Tailwind 4, port 5175
 asm/x86-nasm/x86-nasm-sandbox/         Linux x86-64, NASM
@@ -99,6 +102,10 @@ pnpm start
 ```
 
 That runs `src/index.js`.
+
+### js/javascript/javascript-repl
+
+The JavaScript REPL via Node's built-in interactive shell. Run `node` (see `js/javascript/README.md`).
 
 ### js/typescript/typescript-sandbox
 
@@ -428,6 +435,10 @@ java -cp build Main
 
 `javac` writes `Main.class` into `build/`. `java` runs it and prints `hello from java`.
 
+### java/java-repl
+
+The Java REPL via `jshell` (included in JDK 21). Run `jshell` (see `java/README.md`).
+
 ## Python
 
 `python/` is itself the technology, so Python programs sit directly under it.
@@ -441,6 +452,10 @@ python src/main.py
 ```
 
 Prints `hello from python`.
+
+### python/python-repl
+
+The Python REPL via the interpreter's interactive mode. Run `python` (see `python/README.md`).
 
 ## Assembly
 

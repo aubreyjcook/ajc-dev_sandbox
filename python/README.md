@@ -5,6 +5,7 @@ Python is a single-technology group, so programs sit directly under `python/` wi
 ## Programs
 
 - [`python-sandbox/`](python-sandbox/) — a plain Python hello script.
+- [`python-repl/`](python-repl/) — the Python REPL.
 
 ## Add a program
 

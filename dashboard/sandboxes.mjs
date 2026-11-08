@@ -29,6 +29,16 @@ export const sandboxes = [
     run: { cmd: "pnpm", args: ["start"] },
   },
   {
+    id: "javascript-repl",
+    name: "javascript-repl",
+    group: "js",
+    path: "js/javascript/javascript-repl",
+    type: "interactive",
+    port: null,
+    description: "JavaScript REPL (node)",
+    command: "node",
+  },
+  {
     id: "typescript-sandbox",
     name: "typescript-sandbox",
     group: "js",
@@ -192,6 +202,16 @@ export const sandboxes = [
     down: { cmd: "docker", args: ["compose", "down"] },
   },
   {
+    id: "postgres-repl",
+    name: "postgres-repl",
+    group: "db",
+    path: "db/postgres/postgres-sandbox",
+    type: "interactive",
+    port: null,
+    description: "PostgreSQL shell (psql)",
+    command: "docker compose exec db psql -U sandbox -d sandbox",
+  },
+  {
     id: "mysql",
     name: "mysql-sandbox",
     group: "db",
@@ -201,6 +221,16 @@ export const sandboxes = [
     description: "MySQL 8.4",
     up: { cmd: "docker", args: ["compose", "up", "-d"] },
     down: { cmd: "docker", args: ["compose", "down"] },
+  },
+  {
+    id: "mysql-repl",
+    name: "mysql-repl",
+    group: "db",
+    path: "db/mysql/mysql-sandbox",
+    type: "interactive",
+    port: null,
+    description: "MySQL shell",
+    command: "docker compose exec db mysql -u sandbox -psandbox sandbox",
   },
   {
     id: "sqlite",
@@ -292,6 +322,16 @@ export const sandboxes = [
     buildMarker: "build",
     run: { cmd: "java", args: ["-cp", "build", "Main"] },
   },
+  {
+    id: "java-repl",
+    name: "java-repl",
+    group: "java",
+    path: "java/java-repl",
+    type: "interactive",
+    port: null,
+    description: "Java REPL (jshell)",
+    command: "jshell",
+  },
 
   // --- python ---
   {
@@ -303,6 +343,16 @@ export const sandboxes = [
     port: null,
     description: "Plain Python 3.12",
     run: { cmd: "python", args: ["src/main.py"] },
+  },
+  {
+    id: "python-repl",
+    name: "python-repl",
+    group: "python",
+    path: "python/python-repl",
+    type: "interactive",
+    port: null,
+    description: "Python REPL",
+    command: "python",
   },
 
   // --- asm ---
